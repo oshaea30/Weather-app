@@ -8,4 +8,4 @@ In the project directory, you can run:
 
 # Weather-app
 Weather app using openweather api
->>>>>>> ba5fad475d59bb0060224e19de04e1702b0c8060
+
