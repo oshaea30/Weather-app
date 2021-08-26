@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
+import ReactAnimatedWeather from 'react-animated-weather';
+
 const api = {
   key: "f67490d0dd2daf9963641a5f4fda7e7b",
   base: "https://api.openweathermap.org/data/2.5/"
@@ -10,7 +12,7 @@ function App() {
 
    const search = evt => {
      if (evt.key === "Enter") {
-       fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+       fetch(`${api.base}weather?q=${query}&units=imperial&APPID=${api.key}`)
          .then(res => res.json())
          .then(result => {
            setWeather(result)
@@ -50,14 +52,15 @@ function App() {
         {(typeof weather.main !== "undefined") ? (
        <div>
         <div className="location-box">
-          <div className="location">{weather.name}, {weather.sys.country}</div>
+          <div className="location">{weather.name}</div>
           <div className="date">{dateBuilder(new Date())}</div>
         </div>
         <div className="weather-box">
+        <div className="weather">{weather.weather[0].description}</div>
           <div className="temp">
-            {Math.round(weather.main.temp)}°c
+            {Math.round(weather.main.temp)}°F
           </div>
-          <div className="weather">{weather.weather[0].main}</div>
+          <div className="max-temp">H:{Math.round(weather.main.temp_max)}° L:{Math.round(weather.main.temp_min)}°</div>
         </div>
        </div>
         ) : ('')}
